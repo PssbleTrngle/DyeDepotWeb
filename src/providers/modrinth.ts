@@ -37,6 +37,7 @@ function toMod(project: Labrinth.Projects.v3.Project): Mod {
       source: project.link_urls.source?.url,
       modrinth: url,
     },
+    downloads: project.downloads,
   };
 }
 

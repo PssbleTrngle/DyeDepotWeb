@@ -1,0 +1,25 @@
+---
+import ModCard from "../components/ModCard.astro";
+import type { ModCompat } from "../mods";
+import type { WithMatches } from "../search";
+
+export type Props = { mods: WithMatches<ModCompat>[] };
+
+const { mods } = Astro.props;
+---
+
+<ul id="mods">
+  {mods.map((it) => <ModCard {...it} />)}
+</ul>
+
+<style scoped>
+  ul {
+    list-style: none;
+
+    width: 800px;
+    max-width: 90dvw;
+
+    display: grid;
+    gap: 1em;
+  }
+</style>

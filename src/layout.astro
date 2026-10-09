@@ -5,11 +5,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.png" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
+    <title>Dye Depot</title>
   </head>
   <body>
     <main>
@@ -19,10 +18,10 @@
 
   <style is:global>
     :root {
-      --accent: #7e56c2;
+      --accent: #e4a620;
       --text: #ddd;
-      --bg-1: #1e2129;
-      --bg-2: #303644;
+      --bg-1: #2d2119;
+      --bg-2: rgb(82, 55, 39);
     }
 
     html,
@@ -43,9 +42,17 @@
       padding: 1em 0;
       display: grid;
       justify-content: center;
-      align-items: start;
+    }
 
-      min-height: calc(100dvh - 5em);
+    input {
+      outline: none;
+      border: none;
+
+      background: var(--bg-2);
+      color: white;
+      padding: 0.5em;
+
+      border-radius: 0.3em;
     }
   </style>
 </html>

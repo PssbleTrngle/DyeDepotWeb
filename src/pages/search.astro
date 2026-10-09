@@ -1,0 +1,14 @@
+---
+import ModList from "../components/ModList.astro";
+import { searchMods } from "../search";
+
+export const partial = true;
+
+const { term } = await Astro.request.json();
+const matches = searchMods(term);
+
+console.log(term);
+Astro.response.headers.set("HX-Push-Url", term ? `/?search=${term}` : "/");
+---
+
+<ModList mods={matches} />

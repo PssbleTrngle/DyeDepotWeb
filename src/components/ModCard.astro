@@ -1,12 +1,15 @@
 ---
 import type { ModCompat } from "../mods";
+import type { WithMatches } from "../search";
 import ModIcon from "./ModIcon.astro";
 import Pill from "./Pill.astro";
 import { Icon } from "astro-icon/components";
 
-export type Props = ModCompat;
+export type Props = WithMatches<ModCompat>;
 
-const { mod, supports } = Astro.props;
+const { mod, supports, matches = [] } = Astro.props;
+
+const highlightedMods = matches.filter(it => it.key?.startsWith("supports.")).map(it => it.refIndex ?? -1)
 ---
 
 <li class="card">
@@ -34,10 +37,10 @@ const { mod, supports } = Astro.props;
       supports.length > 0 ? (
           <h4>adds support for:</h4>
           <ul>
-            {supports.map((it) => (
+            {supports.map((it, i) => (
               <li title={it.name}>
                 <a href={it.url}>
-                  <ModIcon url={it.iconUrl} />
+                  <ModIcon url={it.iconUrl} highlighted={highlightedMods.includes(i)} />
                 </a>
               </li>
             ))}
@@ -51,7 +54,7 @@ const { mod, supports } = Astro.props;
 
 <style scoped>
   .card {
-    background: #0003;
+    background: var(--bg-2);
     padding: 1em;
     gap: 1em;
     border-radius: 0.5em;
@@ -73,6 +76,12 @@ const { mod, supports } = Astro.props;
             color: var(--accent);
           }
       }
+    }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3em;
     }
 
     .icon {

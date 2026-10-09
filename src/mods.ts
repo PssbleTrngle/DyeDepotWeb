@@ -10,6 +10,7 @@ export type Mod = {
     source?: string;
     modrinth?: string;
   };
+  downloads: number;
 };
 
 export type SupportedMod = Mod & {

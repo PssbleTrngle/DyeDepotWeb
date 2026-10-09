@@ -1,19 +1,14 @@
 // @ts-check
-import { defineConfig } from "astro/config";
-
+import node from "@astrojs/node";
 import icon from "astro-icon";
-import populateData from "./src/preBuilt";
+import { defineConfig } from "astro/config";
+import htmx from "./plugins/htmx";
+import populate from "./plugins/populate";
 
 export default defineConfig({
-  integrations: [
-    icon(),
-    {
-      name: "internal",
-      hooks: {
-        "astro:config:done": async () => {
-          await populateData();
-        },
-      },
-    },
-  ],
+  output: "server",
+  integrations: [icon(), htmx, populate],
+  adapter: node({
+    mode: "standalone",
+  }),
 });

@@ -1,0 +1,26 @@
+---
+export type Props = { initial?: string };
+
+const { initial } = Astro.props;
+---
+
+<form
+  hx-ext="json-enc"
+  hx-post="/search"
+  hx-target="#mods"
+  hx-swap="outerHTML"
+  hx-trigger="input delay:800ms"
+>
+  <input name="term" placeholder="Search for a mod..." value={initial} />
+</form>
+
+<style scoped>
+  form {
+    margin-bottom: 50px;
+
+    input {
+      font-size: 1em;
+      width: 100%;
+    }
+  }
+</style>

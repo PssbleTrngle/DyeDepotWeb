@@ -1,90 +1,7 @@
 [
    {
       "url": "https://modrinth.com/mod/dye-the-world",
-      "supports": [
-         {
-            "url": "https://modrinth.com/mod/create",
-            "version": ">=6.0.0"
-         },
-         {
-            "url": "https://modrinth.com/mod/create-aeronautics"
-         },
-         {
-            "url": "https://modrinth.com/mod/another-furniture"
-         },
-         {
-            "url": "https://modrinth.com/mod/comforts"
-         },
-         {
-            "url": "https://modrinth.com/mod/clayworks"
-         },
-         {
-            "url": "https://modrinth.com/mod/farmers-delight"
-         },
-         {
-            "url": "https://modrinth.com/mod/quark"
-         },
-         {
-            "url": "https://modrinth.com/mod/redomesticate"
-         },
-         {
-            "url": "https://modrinth.com/mod/supplementaries"
-         },
-         {
-            "url": "https://modrinth.com/mod/supplementaries-squared"
-         },
-         {
-            "url": "https://modrinth.com/mod/ars-nouveau"
-         },
-         {
-            "url": "https://modrinth.com/mod/create-deco"
-         },
-         {
-            "url": "https://modrinth.com/mod/create-steam-n-rails"
-         },
-         {
-            "url": "https://modrinth.com/mod/upgrade-aquatic"
-         },
-         {
-            "url": "https://modrinth.com/mod/more-concrete"
-         },
-         {
-            "url": "https://modrinth.com/mod/waystones"
-         },
-         {
-            "url": "https://modrinth.com/mod/interiors"
-         },
-         {
-            "url": "https://modrinth.com/mod/snowy-spirit"
-         },
-         {
-            "url": "https://modrinth.com/mod/botany-pots"
-         },
-         {
-            "url": "https://modrinth.com/mod/connected-glass"
-         },
-         {
-            "url": "https://modrinth.com/mod/vanillabackport"
-         },
-         {
-            "url": "https://modrinth.com/mod/spelunkery"
-         },
-         {
-            "url": "https://modrinth.com/mod/twigs"
-         },
-         {
-            "url": "https://modrinth.com/mod/numismatics"
-         },
-         {
-            "url": "https://modrinth.com/mod/sleep-tight"
-         },
-         {
-            "url": "https://modrinth.com/mod/create-bits-n-bobs"
-         },
-         {
-            "url": "https://modrinth.com/mod/labels"
-         }
-      ]
+      "supports": true
    },
    {
       "url": "https://modrinth.com/mod/patch-up",
@@ -92,5 +9,58 @@
    },
    {
       "url": "https://modrinth.com/mod/wallpapers"
+   },
+   {
+      "url": "https://modrinth.com/mod/colorful-depot",
+      "supports": true
+   },
+   {
+      "url": "https://modrinth.com/resourcepack/waystones-dye-depot",
+      "supports": true
+   },
+   {
+      "url": "https://modrinth.com/mod/create-electro-energetics-x-dye-depot",
+      "supports": true
+   },
+   {
+      "url": "https://modrinth.com/resourcepack/ctm-dye-depot"
+   },
+   {
+      "url": "https://modrinth.com/mod/botany-pots-depot",
+      "supports": true
+   },
+   {
+      "url": "https://modrinth.com/resourcepack/dye-the-skies",
+      "supports": true
+   },
+   {
+      "url": "https://modrinth.com/mod/dyelation",
+      "supports": true
+   },
+   {
+      "url": "https://modrinth.com/mod/cyberish-lights-depot",
+      "supports": true
+   },
+   {
+      "url": "https://modrinth.com/mod/natures-spirit-x-dye-depot",
+      "supports": true
+   },
+   {
+      "url": "https://modrinth.com/resourcepack/dye-depot-x-create-bits-n-bobs-n-dyes",
+      "supports": [
+         {
+            "url": "https://modrinth.com/mod/create-bits-n-bobs"
+         }
+      ]
+   },
+   {
+      "url": "https://modrinth.com/mod/slabfish-depot",
+      "supports": true
+   },
+   {
+      "url": "https://modrinth.com/mod/industrially-plated"
+   },
+   {
+      "url": "https://modrinth.com/mod/sign-plates-letters-symbols"
    }
 ]

@@ -1,23 +1,15 @@
 ---
-import ModCard from "../components/ModCard.astro";
-import { mods } from "../generated";
+import ModList from "../components/ModList.astro";
+import Search from "../components/Search.astro";
 import Layout from "../layout.astro";
+import { searchMods } from "../search";
+
+const initialSeach = Astro.url.searchParams.get("search") ?? "";
+
+const mods = searchMods(initialSeach);
 ---
 
 <Layout>
-  <ul>
-    {mods.map((it) => <ModCard {...it} />)}
-  </ul>
+  <Search initial={initialSeach} />
+  <ModList mods={mods} />
 </Layout>
-
-<style scoped>
-  ul {
-    list-style: none;
-
-    width: 800px;
-    max-width: 90dvw;
-
-    display: grid;
-    gap: 1em;
-  }
-</style>

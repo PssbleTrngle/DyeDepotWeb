@@ -29,6 +29,8 @@ async function fetchSupported(url: string): Promise<SupportedMod[]> {
   const dependencies = await provider.dependencies(url);
   return dependencies.filter((it) => {
     if (it.slug === "dye-depot") return false;
+    if (it.slug === "dye-the-world") return false;
+    if (it.slug === "fabric-api") return false;
     return true;
   });
 }
@@ -50,11 +52,19 @@ export default async function populateData() {
     }),
   );
 
+  const sorted = populated.toSorted((a, b) => {
+    const [scoreA, scoreB] = [a, b].map(
+      (it) => it.mod.downloads * it.supports.length + 1,
+    );
+
+    return scoreB - scoreA;
+  });
+
   await writeFile(
     join(import.meta.dirname, "generated.ts"),
     [
       `import type { ModCompat } from "./mods";`,
-      `export const mods: ModCompat[] = ${JSON.stringify(populated, null, 2)};`,
+      `export const mods: ModCompat[] = ${JSON.stringify(sorted, null, 2)};`,
     ].join("\n"),
   );
 }
