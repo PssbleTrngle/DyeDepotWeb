@@ -1,16 +1,23 @@
 ---
+import ModCard from "../components/ModCard.astro";
+import { mods } from "../generated";
+import Layout from "../layout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+  <ul>
+    {mods.map((it) => <ModCard {...it} />)}
+  </ul>
+</Layout>
+
+<style scoped>
+  ul {
+    list-style: none;
+
+    width: 800px;
+    max-width: 90dvw;
+
+    display: grid;
+    gap: 1em;
+  }
+</style>

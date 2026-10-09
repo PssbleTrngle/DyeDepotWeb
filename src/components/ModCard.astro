@@ -1,0 +1,110 @@
+---
+import type { ModCompat } from "../mods";
+import ModIcon from "./ModIcon.astro";
+import Pill from "./Pill.astro";
+import { Icon } from "astro-icon/components";
+
+export type Props = ModCompat;
+
+const { mod, supports } = Astro.props;
+---
+
+<li class="card">
+  <a class="icon" href={mod.url}>
+    <ModIcon url={mod.iconUrl} />
+  </a>
+
+  <h3>
+    <span>{mod.name}</span>
+    <a href={mod.links.source} title="source code">
+      <Icon name="simple-icons:git" />
+    </a>
+    <a href={mod.links.modrinth} title="modrinth project">
+      <Icon name="simple-icons:modrinth" />
+    </a>
+  </h3>
+
+  <section class="pills">
+    {mod.minecraftVersions.map(it => <Pill text={it} />)}
+    {mod.loaders.map(it => <Pill text={it} />)}
+  </section>
+
+  <section class="supports">
+    {
+      supports.length > 0 ? (
+          <h4>adds support for:</h4>
+          <ul>
+            {supports.map((it) => (
+              <li title={it.name}>
+                <a href={it.url}>
+                  <ModIcon url={it.iconUrl} />
+                </a>
+              </li>
+            ))}
+          </ul>
+      ) : (
+        <h4>built-in support</h4>
+      )
+    }
+  </section>
+</li>
+
+<style scoped>
+  .card {
+    background: #0003;
+    padding: 1em;
+    gap: 1em;
+    border-radius: 0.5em;
+
+    h3 {
+      span {
+        margin-right: 0.6em;
+      }
+
+      [data-icon] {
+          color: var(--text);
+          align-items: end;
+          margin-left: 0.4em;
+          margin-bottom: -0.1em;
+          
+          transition: all 0.2s ease;
+
+          &:hover {
+            color: var(--accent);
+          }
+      }
+    }
+
+    .icon {
+      grid-area: icon;
+    }
+
+    display: grid;
+    grid-template:
+      "name icon"
+      "pills icon"
+      "supports supports"
+      / 1fr 100px;
+
+    .supports {
+      grid-area: supports;
+
+      h4 {
+        font-style: italic;
+      }
+
+      & ul {
+        list-style: none;
+        padding: 0.5em;
+
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 50px);
+        gap: 0.5em;
+
+        li {
+          width: 50px;
+        }
+      }
+    }
+  }
+</style>

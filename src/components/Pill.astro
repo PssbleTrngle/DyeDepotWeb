@@ -1,0 +1,24 @@
+---
+const colors: Record<string, string | undefined> = {
+  neoforge: "#f99e6b",
+  forge: "#959eef",
+  fabric: "#dbb69b",
+};
+
+export type Props = { text: string };
+
+const { text } = Astro.props;
+---
+
+<span style={{ color: colors[text] }}>
+  {text}
+</span>
+
+<style scoped>
+  span {
+    background: #fff1;
+    padding: 0.3em 0.6em;
+    border-radius: 9999px;
+    margin-right: 0.3em;
+  }
+</style>

@@ -1,0 +1,23 @@
+---
+export type Props = { url?: string };
+
+const { url = "https://placehold.co/128" } = Astro.props;
+---
+
+<img src={url} />
+
+<style scoped>
+  img {
+    aspect-ratio: 1 / 1;
+    max-width: 100%;
+    border-radius: 0.5em;
+    border: 1px solid #fff2;
+
+    transition: all 0.2s ease;
+
+    &:hover {
+      filter: brightness(1.2);
+      border-color: #fff6;
+    }
+  }
+</style>

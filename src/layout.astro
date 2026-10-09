@@ -1,0 +1,51 @@
+---
+
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body>
+    <main>
+      <slot />
+    </main>
+  </body>
+
+  <style is:global>
+    :root {
+      --accent: #7e56c2;
+      --text: #ddd;
+      --bg-1: #1e2129;
+      --bg-2: #303644;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+
+      background: var(--bg-1);
+      color: var(--text);
+      font-family: sans-serif;
+
+      ::selection {
+        background: var(--accent);
+      }
+    }
+
+    main {
+      padding: 1em 0;
+      display: grid;
+      justify-content: center;
+      align-items: start;
+
+      min-height: calc(100dvh - 5em);
+    }
+  </style>
+</html>
