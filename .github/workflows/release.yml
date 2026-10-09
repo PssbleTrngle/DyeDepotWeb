@@ -35,12 +35,7 @@ jobs:
            id: meta
            uses: docker/metadata-action@v5
            with:
-              images: ${{ env.REGISTRY }}/${{ env.GITHUB_REPO }}-${{ matrix.app }}
-              tags: |
-                 type=raw,value=latest
-                 type=raw,value=stable,enable=${{ github.event_name == 'release' }}
-                 type=semver,pattern={{version}},enable=${{ github.event_name == 'release' }}
-                 type=sha,priority=250,enable=${{ github.event_name != 'release' }}
+              images: ${{ env.REGISTRY }}/dye-depot
 
          - name: Setup Bun
            uses: oven-sh/setup-bun@v2
