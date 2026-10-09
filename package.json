@@ -17,7 +17,7 @@
     "fuse.js": "^7.5.0",
     "htmx-ext-json-enc": "^2.0.3",
     "htmx.org": "^2.0.11",
-    "@modrinth/api-client": "^0.79.0",
+    "@modrinth/api-client": "^0.81.0",
     "zod": "^4.6.5"
   },
   "devDependencies": {
