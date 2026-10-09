@@ -7,7 +7,15 @@ import populate from "./plugins/populate";
 
 export default defineConfig({
   output: "server",
-  integrations: [icon(), htmx, populate],
+  integrations: [
+    icon({
+      include: {
+        "simple-icons": ["git", "modrinth"],
+      },
+    }),
+    htmx,
+    populate,
+  ],
   adapter: node({
     mode: "standalone",
   }),
