@@ -7,18 +7,18 @@
       "dependencies": {
         "@astrojs/node": "^11.1.6",
         "@iconify-json/simple-icons": "^1.2.98",
+        "@modrinth/api-client": "^0.81.0",
         "astro": "^7.3.5",
         "astro-icon": "^1.2.0",
         "fuse.js": "^7.5.0",
         "htmx-ext-json-enc": "^2.0.3",
         "htmx.org": "^2.0.11",
+        "zod": "^4.6.5",
       },
       "devDependencies": {
         "@astrojs/check": "^0.9.10",
-        "@modrinth/api-client": "^0.79.0",
         "@types/bun": "^1.4.2",
         "typescript": "6",
-        "zod": "^4.6.5",
       },
     },
   },
@@ -237,7 +237,7 @@
 
     "@jridgewell/sourcemap-codec": ["@jridgewell/sourcemap-codec@1.6.0", "", {}, "sha512-T7jf+5zgsZHwNJ4lvQ7/aezbyk0nNX+zJVWpmHA7VYsEx7a7qr5Rg5IbtJFqkgze5Y2sruq1RUY8Q837Od7iFw=="],
 
-    "@modrinth/api-client": ["@modrinth/api-client@0.79.0", "", { "dependencies": { "mitt": "^3.0.1", "ofetch": "^1.4.1" }, "peerDependencies": { "@tauri-apps/plugin-http": "^2.0.0" }, "optionalPeers": ["@tauri-apps/plugin-http"] }, "sha512-3maV2whDGeaQOGZmWG47byH85CWotHAKZnuTERqatGctJwOfmPeDegUvcoo2Cx7DkC55BphjfcSbBod4h/9eDA=="],
+    "@modrinth/api-client": ["@modrinth/api-client@0.81.0", "", { "dependencies": { "mitt": "^3.0.1", "ofetch": "^1.4.1" }, "peerDependencies": { "@tauri-apps/plugin-http": "^2.0.0" }, "optionalPeers": ["@tauri-apps/plugin-http"] }, "sha512-Dsp0G14VUC0VrcM0Jcyw6UaUsWfuQx71fwLjtMFQVQoalLVHrSmygd2MeJPrKUBtFlnSHTCvHIjQMhkXvqRX8w=="],
 
     "@napi-rs/wasm-runtime": ["@napi-rs/wasm-runtime@1.2.4", "", { "dependencies": { "@tybys/wasm-util": "^0.10.3" }, "peerDependencies": { "@emnapi/core": "^1.7.1 || ^2.0.0-alpha.4", "@emnapi/runtime": "^1.7.1 || ^2.0.0-alpha.4" } }, "sha512-AJxoUD2/15ESHbvpcyjU274nsAPLuOtPHCk0vKJM5pj//Fg/B1FXNWjPnXTT9PymCYYiHo4zPj0ZomXBKhoy7g=="],
 
