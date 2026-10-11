@@ -30,7 +30,7 @@ function toMod(project: Labrinth.Projects.v3.Project): Mod {
     slug: project.slug ?? project.id,
     summary: project.summary,
     loaders: project.loaders,
-    iconUrl: project.raw_icon_url,
+    iconUrl: project.icon_url,
     minecraftVersions: (project.game_versions as string[]).toReversed() ?? [],
     url,
     links: {

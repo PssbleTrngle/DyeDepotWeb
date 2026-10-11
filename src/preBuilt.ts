@@ -1,5 +1,7 @@
+import { existsSync } from "node:fs";
 import { writeFile } from "node:fs/promises";
-import { join } from "node:path";
+import { extname } from "node:path";
+import { join } from "node:path/posix";
 import * as z from "zod";
 import rawData from "../mods.json";
 import type { Mod, ModCompat, SupportedMod } from "./mods";
@@ -21,7 +23,8 @@ const data = schema.parse(rawData);
 async function fetchMod<T extends { url: string }>(mod: T): Promise<T & Mod> {
   const provider = providerOf(mod.url);
   const fetched = await provider.mod(mod.url);
-  return { ...mod, ...fetched };
+  const assets = await downloadAssets(fetched);
+  return { ...mod, ...fetched, ...assets };
 }
 
 const LIBRARIES: string[] = ["dye-depot", "dye-the-world"];
@@ -29,11 +32,54 @@ const LIBRARIES: string[] = ["dye-depot", "dye-the-world"];
 async function fetchSupported(url: string): Promise<SupportedMod[]> {
   const provider = providerOf(url);
   const dependencies = await provider.dependencies(url);
-  return dependencies.filter((it) => {
+  const filtered = dependencies.filter((it) => {
     if (LIBRARIES.includes(it.slug)) return false;
     if (it.categories.includes("library")) return false;
     return true;
   });
+
+  return Promise.all(
+    filtered.map(async (mod) => {
+      const assets = await downloadAssets(mod);
+      return { ...mod, ...assets };
+    }),
+  );
+}
+
+function pin(mod: Mod, references: Mod[]): Mod {
+  return {
+    ...mod,
+    minecraftVersions: mod.minecraftVersions.filter((it) =>
+      references.some((reference) => reference.minecraftVersions.includes(it)),
+    ),
+    loaders: mod.loaders.filter((it) =>
+      references.some((reference) => reference.loaders.includes(it)),
+    ),
+  };
+}
+
+async function downloadAssets(mod: Mod): Promise<Partial<Mod>> {
+  let iconUrl: string | undefined = undefined;
+
+  if (mod.iconUrl) {
+    const extension = extname(mod.iconUrl);
+    const localUrl = join("icons", mod.slug + extension);
+    const localIcon = join(import.meta.dirname, "..", "public", localUrl);
+
+    if (!existsSync(localIcon)) {
+      console.log(`downloading ${mod.iconUrl}...`);
+      const response = await fetch(mod.iconUrl);
+      await Bun.write(localIcon, response, {
+        createPath: true,
+      });
+    }
+
+    iconUrl = `/${localUrl}`;
+  }
+
+  return {
+    iconUrl,
+  };
 }
 
 export default async function populateData() {
@@ -57,24 +103,9 @@ export default async function populateData() {
     url: "https://modrinth.com/mod/dye-depot",
   });
 
-  function tidy(mod: Mod) {
-    return {
-      ...mod,
-      minecraftVersions: mod.minecraftVersions.filter((it) =>
-        dyeDepot.minecraftVersions.includes(it),
-      ),
-      loaders: mod.loaders.filter((it) => dyeDepot.loaders.includes(it)),
-    };
-  }
+  const compatMods = populated.filter((it) => it.connections.length > 0);
 
-  const tidied = populated.map(({ mod, connections }) => ({
-    mod: tidy(mod),
-    connections: connections.map(tidy),
-  }));
-
-  const compatMods = tidied.filter((it) => it.connections.length > 0);
-
-  const contentMods = tidied.flatMap<ModCompat>(({ mod, connections }) => {
+  const contentMods = populated.flatMap<ModCompat>(({ mod, connections }) => {
     if (connections.length > 0)
       return connections.map((it) => ({ mod: it, connections: [mod] }));
     return [{ mod, connections: [] }];
@@ -88,6 +119,10 @@ export default async function populateData() {
       mods[mod.slug] = { mod, connections };
     }
   });
+
+  for (const [slug, { mod, connections }] of Object.entries(mods)) {
+    mods[slug].mod = pin(mod, connections.length ? connections : [dyeDepot]);
+  }
 
   await writeFile(
     join(import.meta.dirname, "generated.ts"),
@@ -109,6 +144,7 @@ export default async function populateData() {
         null,
         2,
       )};`,
+      `export const dyeDepot = ${JSON.stringify(dyeDepot)}`,
     ].join("\n"),
   );
 }

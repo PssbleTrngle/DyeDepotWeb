@@ -2,23 +2,42 @@
 import ModList from "../components/ModList.astro";
 import { compatMods, mods } from "../generated";
 import type { ModCompat } from "../mods";
-import { searchMods } from "../search";
+import { searchMods, type SearchQuery } from "../search";
 
 export const partial = true;
 
-const { term, type } = await Astro.request.json();
+const { type, ...body } = (await Astro.request.json()) as {
+  type: string;
+} & SearchQuery;
+
+function multiSelectValue(search?: string | string[]) {
+  if (!search) return [];
+  if (Array.isArray(search)) return search;
+  return [search];
+}
+
+const search: SearchQuery = {
+  ...body,
+  loader: multiSelectValue(body.loader),
+  version: multiSelectValue(body.version),
+};
 
 const subjects: Record<string, ModCompat[] | undefined> = {
   "compat-mods": compatMods,
   compatible: mods,
 };
 
-const matches = searchMods(subjects[type] ?? [], term);
+const matches = searchMods(subjects[type] ?? [], search);
 
-Astro.response.headers.set(
-  "HX-Push-Url",
-  term ? `/${type}?search=${term}` : "/",
-);
+const params = new URLSearchParams();
+if (search.term) params.set("search", search.term);
+if (search.loader?.length) params.set("loader", search.loader.join(","));
+if (search.version?.length) params.set("version", search.version.join(","));
+
+let query = params.toString();
+if (query) query = `?${query}`;
+
+Astro.response.headers.set("HX-Push-Url", `/${type}${query}`);
 
 const connectionType = type === "compat-mods" ? "supports" : "supportedBy";
 ---

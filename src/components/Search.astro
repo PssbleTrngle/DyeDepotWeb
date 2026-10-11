@@ -1,5 +1,9 @@
 ---
-export type Props = { initial?: string };
+import { dyeDepot } from "../generated";
+import type { SearchQuery } from "../search";
+import Select from "./Select.astro";
+
+export type Props = { initial?: SearchQuery };
 
 const { initial } = Astro.props;
 
@@ -11,19 +15,58 @@ const type = Astro.url.pathname.substring(1);
   hx-post="search"
   hx-target="#mods"
   hx-swap="outerHTML"
-  hx-trigger="input delay:800ms"
+  hx-trigger="submit, input delay:800ms"
 >
-  <input name="term" placeholder="Search for a mod..." value={initial} />
+  <input name="term" placeholder="Search for a mod..." value={initial?.term} />
   <input name="type" type="hidden" value={type} />
+
+  <Select
+    name="loader"
+    allowNull
+    options={dyeDepot.loaders}
+    selected={initial?.loader?.[0]}
+  >
+    Loader:
+  </Select>
+
+  <Select
+    name="version"
+    allowNull
+    options={dyeDepot.minecraftVersions}
+    selected={initial?.version?.[0]}
+  >
+    Version:
+  </Select>
 </form>
 
 <style scoped>
   form {
+    padding: 0 1em;
+    justify-content: center;
     margin-bottom: 50px;
 
     input {
       font-size: 1em;
-      width: 100%;
+      grid-area: search;
+    }
+
+    display: grid;
+    gap: 1em;
+    grid-template:
+      "search . . . ."
+      / 1fr 80px 100px 80px 100px;
+
+    label {
+      text-align: right;
+    }
+
+    align-items: center;
+
+    @media (width <= 800px) {
+      grid-template:
+        "search search search search"
+        ". . . ."
+        / 1fr 2fr 1fr 2fr;
     }
   }
 </style>

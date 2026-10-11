@@ -44,7 +44,7 @@ const connectionText =
   <section class="connections">
     {
       connections.length > 0 ? (
-          <h4>{connectionText}</h4>
+          <i>{connectionText}</i>
           <ul>
             {connections.map((it, i) => (
               <li title={it.name}>
@@ -55,7 +55,7 @@ const connectionText =
             ))}
           </ul>
       ) : (
-        <h4>built-in support</h4>
+        <i>built-in support</i>
       )
     }
   </section>
@@ -107,8 +107,9 @@ const connectionText =
     .connections {
       grid-area: connections;
 
-      h4 {
-        font-style: italic;
+      i {
+        display: block;
+        margin: 0.5em 0;
       }
 
       & ul {

@@ -6,9 +6,20 @@ export type WithMatches<T> = T & {
   matches?: ReadonlyArray<FuseResultMatch>;
 };
 
+export type SearchQuery = {
+  term: string;
+  loader?: string[];
+  version?: string[];
+};
+
+function supports(modValues: string[], searchValues: string[]) {
+  if (searchValues.length === 0) return true;
+  return modValues.some((it) => searchValues.includes(it));
+}
+
 export function searchMods(
   mods: ModCompat[],
-  term: string,
+  { term, loader = [], version = [] }: SearchQuery,
 ): WithMatches<ModCompat>[] {
   function keys(prefix: string): FuseOptionKeyObject<ModCompat>[] {
     return [
@@ -27,8 +38,23 @@ export function searchMods(
   });
 
   const results = fuse.search(term);
-  return results.map((it) => ({
-    ...it.item,
-    matches: it.matches ?? [],
-  }));
+
+  return results
+    .map((it) => ({
+      ...it.item,
+      matches: it.matches ?? [],
+    }))
+    .filter(({ mod }) => {
+      return (
+        supports(mod.loaders, loader) &&
+        supports(mod.minecraftVersions, version)
+      );
+    });
+}
+
+export function parseSearchQuery(url: URL): SearchQuery {
+  const term = url.searchParams.get("search") ?? "";
+  const loader = url.searchParams.get("loader")?.split(",");
+  const version = url.searchParams.get("version")?.split(",");
+  return { term, loader, version };
 }

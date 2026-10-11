@@ -3,14 +3,13 @@ import ModList from "../../components/ModList.astro";
 import Search from "../../components/Search.astro";
 import { compatMods } from "../../generated";
 import Layout from "../../layout.astro";
-import { searchMods } from "../../search";
+import { parseSearchQuery, searchMods } from "../../search";
 
-const initialSeach = Astro.url.searchParams.get("search") ?? "";
-
-const matches = searchMods(compatMods, initialSeach);
+const search = parseSearchQuery(Astro.url);
+const matches = searchMods(compatMods, search);
 ---
 
 <Layout>
-  <Search initial={initialSeach} />
+  <Search initial={search} />
   <ModList mods={matches} connectionType="supports" />
 </Layout>
