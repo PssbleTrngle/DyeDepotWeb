@@ -20,5 +20,6 @@ export type SupportedMod = Mod & {
 
 export type ModCompat = {
   mod: Mod;
+  description?: string;
   connections: SupportedMod[];
 };

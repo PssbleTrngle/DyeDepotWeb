@@ -1,0 +1,134 @@
+---
+import { Icon } from "astro-icon/components";
+import { dyeDepot } from "../generated";
+
+const links = [
+  {
+    title: "Compatible",
+    url: "/compatible",
+  },
+  {
+    title: "Incompatible",
+    url: "/incompatible",
+  },
+  {
+    title: "Compat Mods",
+    url: "/compat-mods",
+  },
+].map((it) => ({
+  ...it,
+  active: Astro.url.pathname === it.url,
+}));
+
+const externalLinks = [
+  { url: dyeDepot.links.source, title: "sourc code", icon: "simple-icons:git" },
+  {
+    url: dyeDepot.url,
+    title: "modrinth project",
+    icon: "simple-icons:modrinth",
+  },
+  {
+    url: `https://www.curseforge.com/minecraft/mc-mods/${dyeDepot.slug}`,
+    title: "curseforge project",
+    icon: "simple-icons:curseforge",
+  },
+];
+---
+
+<nav>
+  <ul>
+    <a class="home" href="/">
+      <li>
+        <img src="/favicon.png" />
+      </li>
+    </a>
+    {
+      links.map(({ title, url, active }) => (
+        <a href={url} class:list={["page", { active }]}>
+          <li>{title}</li>
+        </a>
+      ))
+    }
+
+    {
+      externalLinks.map(({ icon, url }) => (
+        <a href={url} class="external">
+          <Icon name={icon} />
+        </a>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  nav {
+    background: var(--bg-2);
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      display: flex;
+
+      max-width: 1200px;
+      margin: 0 auto;
+
+      a.home {
+        img {
+          height: 3em;
+          margin-top: 0.2em;
+          margin-right: 1em;
+
+          transition: all 0.2s ease;
+
+          &:hover {
+            filter: brightness(1.2);
+            border-color: #fff6;
+          }
+        }
+      }
+
+      a.page {
+        padding: 1em;
+        color: var(--text);
+        text-decoration: none;
+        background: var(--bg-2);
+
+        transition: all 0.2s ease;
+        border-bottom: 2px solid var(--bg-2);
+
+        &:hover {
+          background: var(--bg-3);
+          border-bottom-color: var(--bg-3);
+        }
+
+        &.active {
+          border-bottom-color: var(--accent);
+        }
+      }
+
+      a.external {
+        color: var(--text);
+
+        font-size: 1.5em;
+        align-self: center;
+        justify-self: end;
+
+        &:not(:last-child) {
+          margin-right: 0.4em;
+        }
+
+        .page + & {
+          margin-left: auto;
+        }
+
+        transition: all 0.2s ease;
+
+        &:hover {
+          color: var(--accent);
+        }
+      }
+    }
+  }
+</style>

@@ -1,5 +1,9 @@
 ---
+import Nav from "./components/Nav.astro";
 
+export type Props = { title?: string; class?: string };
+
+const { title = "Dye Depot", ...props } = Astro.props;
 ---
 
 <html lang="en">
@@ -8,10 +12,11 @@
     <link rel="icon" href="/favicon.png" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Dye Depot</title>
+    <title>{title}</title>
   </head>
   <body>
-    <main>
+    <Nav />
+    <main {...props}>
       <slot />
     </main>
   </body>
@@ -22,6 +27,7 @@
       --text: #ddd;
       --bg-1: #2d2119;
       --bg-2: rgb(82, 55, 39);
+      --bg-3: rgb(128, 84, 59);
     }
 
     html,
@@ -39,20 +45,34 @@
     }
 
     main {
-      padding: 1em 0;
+      padding: 1em;
       display: grid;
       justify-content: center;
     }
 
     input {
-      outline: none;
-      border: none;
-
       background: var(--bg-2);
       color: white;
       padding: 0.5em;
 
       border-radius: 0.3em;
+    }
+
+    input,
+    select,
+    button {
+      border: none;
+      outline: 0 solid var(--accent);
+
+      &:focus-visible {
+        outline-width: 1px;
+        box-shadow: 0 0 0 4px color-mix(var(--accent), transparent);
+      }
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1em;
     }
   </style>
 </html>

@@ -1,0 +1,69 @@
+---
+import Layout from "../layout.astro";
+---
+
+<Layout class="content">
+  <img class="logo" src="/logo.webp" alt="Dye Depot" />
+
+  <p>Dye Depot minecraft mod adding 16 additional colors to the game.</p>
+  <p>
+    This is a rather invasive game modification, causing many other mods to
+    break.
+  </p>
+  <p>
+    This website can be used to see which mods are compatible either by
+    themselves, or a second mod or resourcepack that implements the
+    compatibility.
+  </p>
+  <section class="links">
+    <a href="/compatible">
+      <button> See which mods are compatible </button>
+    </a>
+
+    <a
+      href="https://github.com/PssbleTrngle/DyeTheWorld/issues/new?template=requested_compat.yml"
+    >
+      <button> Request compatibility with a mod </button>
+    </a>
+  </section>
+</Layout>
+
+<style scoped>
+  .content {
+    font-size: 1.5em;
+    max-width: 850px;
+    margin: 0 auto;
+  }
+
+  .logo {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 95dvw;
+  }
+
+  .links {
+    display: grid;
+    gap: 1em;
+    justify-content: center;
+
+    margin-top: 2em;
+
+    @media (width > 800px) {
+      grid-auto-flow: column;
+    }
+
+    button {
+      background: var(--bg-2);
+      color: var(--text);
+      font-size: 1em;
+      padding: 1em;
+      cursor: pointer;
+
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: var(--bg-3);
+      }
+    }
+  }
+</style>

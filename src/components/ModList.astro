@@ -1,19 +1,17 @@
 ---
-import type { ConnectionType } from "../components/ModCard.astro";
 import ModCard from "../components/ModCard.astro";
 import type { ModCompat } from "../mods";
 import type { WithMatches } from "../search";
 
 export type Props = {
   mods: WithMatches<ModCompat>[];
-  connectionType: ConnectionType;
 };
 
-const { mods, connectionType } = Astro.props;
+const { mods } = Astro.props;
 ---
 
 <ul id="mods">
-  {mods.map((it) => <ModCard {...it} connectionType={connectionType} />)}
+  {mods.map((it) => <ModCard {...it} />)}
 </ul>
 
 <style scoped>

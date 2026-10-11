@@ -1,6 +1,6 @@
 ---
 import ModList from "../components/ModList.astro";
-import { compatMods, mods } from "../generated";
+import { compatMods, compatibleMods, incompatibleMods } from "../generated";
 import type { ModCompat } from "../mods";
 import { searchMods, type SearchQuery } from "../search";
 
@@ -24,7 +24,8 @@ const search: SearchQuery = {
 
 const subjects: Record<string, ModCompat[] | undefined> = {
   "compat-mods": compatMods,
-  compatible: mods,
+  compatible: compatibleMods,
+  incompatible: incompatibleMods,
 };
 
 const matches = searchMods(subjects[type] ?? [], search);
@@ -38,8 +39,7 @@ let query = params.toString();
 if (query) query = `?${query}`;
 
 Astro.response.headers.set("HX-Push-Url", `/${type}${query}`);
-
-const connectionType = type === "compat-mods" ? "supports" : "supportedBy";
+Astro.locals.listType = type;
 ---
 
-<ModList mods={matches} connectionType={connectionType} />
+<ModList mods={matches} />

@@ -33,7 +33,6 @@ export function searchMods(
     keys: [...keys("mod"), ...keys("connections")],
     includeScore: true,
     includeMatches: true,
-    shouldSort: false,
     threshold: 0.4,
   });
 

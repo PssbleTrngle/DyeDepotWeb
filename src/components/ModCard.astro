@@ -1,24 +1,34 @@
 ---
+import { Icon } from "astro-icon/components";
 import type { ModCompat } from "../mods";
 import type { WithMatches } from "../search";
 import ModIcon from "./ModIcon.astro";
 import Pill from "./Pill.astro";
-import { Icon } from "astro-icon/components";
 
-export type ConnectionType = "supports" | "supportedBy";
+export type Props = WithMatches<ModCompat>;
 
-export type Props = WithMatches<ModCompat> & {
-  connectionType: ConnectionType;
-};
-
-const { mod, connections, matches = [], connectionType } = Astro.props;
+const { mod, connections, description, matches = [] } = Astro.props;
 
 const highlightedMods = matches
   .filter((it) => it.key?.startsWith("connections."))
   .map((it) => it.refIndex ?? -1);
 
-const connectionText =
-  connectionType === "supports" ? "adds support for:" : "support added by:";
+const type = Astro.locals.listType ?? Astro.url.pathname.substring(1);
+
+function subtext() {
+  if (type === "incompatible") {
+    return null;
+  }
+
+  if (connections.length > 0) {
+    if (type === "compat-mods") return "adds support for:";
+    return "support added by:";
+  }
+
+  return "built-in support";
+}
+
+const connectionText = subtext();
 ---
 
 <li class="card">
@@ -37,25 +47,27 @@ const connectionText =
   </h3>
 
   <section class="pills">
-    {mod.minecraftVersions.map(it => <Pill text={it} />)}
-    {mod.loaders.map(it => <Pill text={it} />)}
+    {mod.minecraftVersions.map((it) => <Pill text={it} />)}
+    {mod.loaders.map((it) => <Pill text={it} />)}
   </section>
 
   <section class="connections">
+    {description && <p class="description">{description}</p>}
+    {connectionText && <i>{connectionText}</i>}
     {
-      connections.length > 0 ? (
-          <i>{connectionText}</i>
-          <ul>
-            {connections.map((it, i) => (
-              <li title={it.name}>
-                <a href={it.url}>
-                  <ModIcon url={it.iconUrl} highlighted={highlightedMods.includes(i)} />
-                </a>
-              </li>
-            ))}
-          </ul>
-      ) : (
-        <i>built-in support</i>
+      connections.length > 0 && (
+        <ul>
+          {connections.map((it, i) => (
+            <li title={it.name}>
+              <a href={it.url}>
+                <ModIcon
+                  url={it.iconUrl}
+                  highlighted={highlightedMods.includes(i)}
+                />
+              </a>
+            </li>
+          ))}
+        </ul>
       )
     }
   </section>
@@ -68,22 +80,27 @@ const connectionText =
     gap: 1em;
     border-radius: 0.5em;
 
+    .description {
+      font-size: 1em;
+      margin: 1em 0;
+    }
+
     h3 {
       span {
         margin-right: 0.6em;
       }
 
       [data-icon] {
-          color: var(--text);
-          align-items: end;
-          margin-left: 0.4em;
-          margin-bottom: -0.1em;
-          
-          transition: all 0.2s ease;
+        color: var(--text);
+        align-items: end;
+        margin-left: 0.4em;
+        margin-bottom: -0.1em;
 
-          &:hover {
-            color: var(--accent);
-          }
+        transition: all 0.2s ease;
+
+        &:hover {
+          color: var(--accent);
+        }
       }
     }
 
