@@ -11,7 +11,7 @@ const { title = "Dye Depot", ...props } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="/favicon.png" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
@@ -45,7 +45,7 @@ const { title = "Dye Depot", ...props } = Astro.props;
         background: var(--accent);
       }
 
-      min-height: 100lvh;
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
     }
