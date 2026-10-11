@@ -2,32 +2,11 @@ import { existsSync } from "node:fs";
 import { writeFile } from "node:fs/promises";
 import { extname } from "node:path";
 import { join } from "node:path/posix";
-import * as z from "zod";
 import compatibleData from "../data/compatible.json";
 import incompatibleData from "../data/incompatible.json";
-import type { Mod, ModCompat, SupportedMod } from "./mods";
+import type { Mod, ModCompat, SupportedMod } from "../src/mods";
 import { providerOf } from "./providers";
-
-const modSchema = z.object({
-  url: z.string(),
-});
-
-const compatibleSchema = z.array(
-  modSchema.and(
-    z.object({
-      features: z.string().optional(),
-      supports: z.literal(true).or(z.array(modSchema)).optional(),
-    }),
-  ),
-);
-
-const incompatibleSchema = z.array(
-  modSchema.and(
-    z.object({
-      reason: z.string(),
-    }),
-  ),
-);
+import { compatibleSchema, incompatibleSchema } from "./schemas";
 
 const compatible = compatibleSchema.parse(compatibleData);
 const incompatible = incompatibleSchema.parse(incompatibleData);
@@ -96,7 +75,7 @@ async function downloadAssets(mod: Mod): Promise<Partial<Mod>> {
 
 export default async function populateData() {
   const populated = await Promise.all(
-    compatible.map(async ({ supports, features, ...compat }) => {
+    compatible.mods.map(async ({ supports, features, ...compat }) => {
       const [mod, connections] = await Promise.all([
         fetchMod(compat),
         supports === true
@@ -139,7 +118,7 @@ export default async function populateData() {
   }
 
   const incompatiblities = await Promise.all(
-    incompatible.map(async (it) => {
+    incompatible.mods.map(async (it) => {
       const mod = await fetchMod(it);
       return {
         mod,

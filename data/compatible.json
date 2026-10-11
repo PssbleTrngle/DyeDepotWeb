@@ -1,81 +1,84 @@
-[
-  {
-    "url": "https://modrinth.com/mod/dye-the-world",
-    "supports": true
-  },
-  {
-    "url": "https://modrinth.com/mod/patch-up",
-    "supports": true
-  },
-  {
-    "url": "https://modrinth.com/mod/wallpapers"
-  },
-  {
-    "url": "https://modrinth.com/mod/colorful-depot",
-    "supports": true
-  },
-  {
-    "url": "https://modrinth.com/resourcepack/waystones-dye-depot",
-    "supports": true
-  },
-  {
-    "url": "https://modrinth.com/mod/create-electro-energetics-x-dye-depot",
-    "supports": true
-  },
-  {
-    "url": "https://modrinth.com/resourcepack/ctm-dye-depot"
-  },
-  {
-    "url": "https://modrinth.com/mod/botany-pots-depot",
-    "supports": true
-  },
-  {
-    "url": "https://modrinth.com/resourcepack/dye-the-skies",
-    "supports": true
-  },
-  {
-    "url": "https://modrinth.com/mod/dyelation",
-    "supports": true
-  },
-  {
-    "url": "https://modrinth.com/mod/cyberish-lights-depot",
-    "supports": true
-  },
-  {
-    "url": "https://modrinth.com/mod/natures-spirit-x-dye-depot",
-    "supports": true
-  },
-  {
-    "url": "https://modrinth.com/resourcepack/dye-depot-x-create-bits-n-bobs-n-dyes",
-    "supports": [
-      {
-        "url": "https://modrinth.com/mod/create-bits-n-bobs"
-      }
-    ]
-  },
-  {
-    "url": "https://modrinth.com/mod/slabfish-depot",
-    "supports": true
-  },
-  {
-    "url": "https://modrinth.com/mod/industrially-plated"
-  },
-  {
-    "url": "https://modrinth.com/mod/sign-plates-letters-symbols"
-  },
-  {
-    "url": "https://modrinth.com/mod/oreganized",
-    "features": "crystal glass"
-  },
-  {
-    "url": "https://modrinth.com/mod/the-sham"
-  },
-  {
-    "url": "https://modrinth.com/mod/doom-gloom",
-    "features": "vigil candles"
-  },
-  {
-    "url": "https://modrinth.com/mod/extra-shiny",
-    "features": "carpets on vanadium golems"
-  }
-]
+{
+  "$schema": "../schemas/compatible.json",
+  "mods": [
+    {
+      "url": "https://modrinth.com/mod/dye-the-world",
+      "supports": true
+    },
+    {
+      "url": "https://modrinth.com/mod/patch-up",
+      "supports": true
+    },
+    {
+      "url": "https://modrinth.com/mod/wallpapers"
+    },
+    {
+      "url": "https://modrinth.com/mod/colorful-depot",
+      "supports": true
+    },
+    {
+      "url": "https://modrinth.com/resourcepack/waystones-dye-depot",
+      "supports": true
+    },
+    {
+      "url": "https://modrinth.com/mod/create-electro-energetics-x-dye-depot",
+      "supports": true
+    },
+    {
+      "url": "https://modrinth.com/resourcepack/ctm-dye-depot"
+    },
+    {
+      "url": "https://modrinth.com/mod/botany-pots-depot",
+      "supports": true
+    },
+    {
+      "url": "https://modrinth.com/resourcepack/dye-the-skies",
+      "supports": true
+    },
+    {
+      "url": "https://modrinth.com/mod/dyelation",
+      "supports": true
+    },
+    {
+      "url": "https://modrinth.com/mod/cyberish-lights-depot",
+      "supports": true
+    },
+    {
+      "url": "https://modrinth.com/mod/natures-spirit-x-dye-depot",
+      "supports": true
+    },
+    {
+      "url": "https://modrinth.com/resourcepack/dye-depot-x-create-bits-n-bobs-n-dyes",
+      "supports": [
+        {
+          "url": "https://modrinth.com/mod/create-bits-n-bobs"
+        }
+      ]
+    },
+    {
+      "url": "https://modrinth.com/mod/slabfish-depot",
+      "supports": true
+    },
+    {
+      "url": "https://modrinth.com/mod/industrially-plated"
+    },
+    {
+      "url": "https://modrinth.com/mod/sign-plates-letters-symbols"
+    },
+    {
+      "url": "https://modrinth.com/mod/oreganized",
+      "features": "crystal glass"
+    },
+    {
+      "url": "https://modrinth.com/mod/the-sham"
+    },
+    {
+      "url": "https://modrinth.com/mod/doom-gloom",
+      "features": "vigil candles"
+    },
+    {
+      "url": "https://modrinth.com/mod/extra-shiny",
+      "features": "carpets on vanadium golems"
+    }
+  ]
+}

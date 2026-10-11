@@ -1,5 +1,5 @@
 import type { AstroIntegration } from "astro";
-import populateData from "../src/preBuilt";
+import populateData from "../scripts/populate";
 
 export default (<AstroIntegration>{
   name: "populate",
