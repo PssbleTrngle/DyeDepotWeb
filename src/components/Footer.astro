@@ -7,11 +7,12 @@ export type AppInfo = {
   repository?: string;
   discordLink?: string;
   commit?: string;
+  branch?: string;
 };
 
 const repoLink =
   appInfo.repository &&
-  `${appInfo.repository}/tree/${appInfo.commit ?? "main"}`;
+  `${appInfo.repository}/tree/${appInfo.commit ?? appInfo.branch ?? "main"}`;
 
 const repoName =
   appInfo.repository &&
@@ -28,7 +29,7 @@ const buildAgo = formatAgo(appInfo.builtAt);
     {
       repoLink && (
         <span>
-          {repoName}@<a href={repoLink}>{appInfo.commit}</a>
+          {repoName}@<a href={repoLink}>{appInfo.branch}</a>
         </span>
       )
     }

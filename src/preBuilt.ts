@@ -173,6 +173,7 @@ export default async function populateData() {
       `export const appInfo: AppInfo = {
         builtAt: new Date(${Date.now()}),
         repository: "${import.meta.env.GIT_REPOSITORY ?? ""}",
+        branch: "${import.meta.env.GIT_BRANCH ?? ""}",
         commit: "${import.meta.env.GIT_COMMIT ?? ""}",
         discordLink: "${import.meta.env.DISCORD_INVITE_URL ?? ""}",
       };`,

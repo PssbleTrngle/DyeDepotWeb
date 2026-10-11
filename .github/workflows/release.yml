@@ -49,5 +49,6 @@ jobs:
               labels: ${{ steps.meta.outputs.labels }}
               build-args: |
                  repository=https://github.com/${{ env.GITHUB_REPO }}
+                 branch=${{ github.ref_name }}
                  commit=${{ github.sha }}
                  discordInviteUrl=${{ secrets.DISCORD_INVITE_URL }}
