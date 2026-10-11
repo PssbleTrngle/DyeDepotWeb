@@ -5,11 +5,11 @@ const script = /* javascript */ `
  import 'htmx-ext-json-enc';
 `;
 
-export default <AstroIntegration>{
+export default (<AstroIntegration>{
   name: "htmx",
   hooks: {
     "astro:config:setup": ({ injectScript }) => {
       injectScript("page", script);
     },
   },
-};
+});

@@ -1,13 +1,15 @@
 import type { FuseOptionKeyObject, FuseResultMatch } from "fuse.js";
 import Fuse from "fuse.js";
-import { mods } from "./generated";
 import type { ModCompat } from "./mods";
 
 export type WithMatches<T> = T & {
   matches?: ReadonlyArray<FuseResultMatch>;
 };
 
-export function searchMods(term: string): WithMatches<ModCompat>[] {
+export function searchMods(
+  mods: ModCompat[],
+  term: string,
+): WithMatches<ModCompat>[] {
   function keys(prefix: string): FuseOptionKeyObject<ModCompat>[] {
     return [
       { name: `${prefix}.name` },
@@ -17,7 +19,7 @@ export function searchMods(term: string): WithMatches<ModCompat>[] {
   }
 
   const fuse = new Fuse(mods, {
-    keys: [...keys("mod"), ...keys("supports")],
+    keys: [...keys("mod"), ...keys("connections")],
     includeScore: true,
     includeMatches: true,
     shouldSort: false,

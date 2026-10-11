@@ -2,16 +2,19 @@
 export type Props = { initial?: string };
 
 const { initial } = Astro.props;
+
+const type = Astro.url.pathname.substring(1);
 ---
 
 <form
   hx-ext="json-enc"
-  hx-post="/search"
+  hx-post="search"
   hx-target="#mods"
   hx-swap="outerHTML"
   hx-trigger="input delay:800ms"
 >
   <input name="term" placeholder="Search for a mod..." value={initial} />
+  <input name="type" type="hidden" value={type} />
 </form>
 
 <style scoped>

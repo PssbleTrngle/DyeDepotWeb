@@ -11,6 +11,7 @@ export type Mod = {
     modrinth?: string;
   };
   downloads: number;
+  categories: string[];
 };
 
 export type SupportedMod = Mod & {
@@ -19,5 +20,5 @@ export type SupportedMod = Mod & {
 
 export type ModCompat = {
   mod: Mod;
-  supports: SupportedMod[];
+  connections: SupportedMod[];
 };

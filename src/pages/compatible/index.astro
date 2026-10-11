@@ -1,0 +1,16 @@
+---
+import ModList from "../../components/ModList.astro";
+import Search from "../../components/Search.astro";
+import { mods } from "../../generated";
+import Layout from "../../layout.astro";
+import { searchMods } from "../../search";
+
+const initialSeach = Astro.url.searchParams.get("search") ?? "";
+
+const matches = searchMods(mods, initialSeach);
+---
+
+<Layout>
+  <Search initial={initialSeach} />
+  <ModList mods={matches} connectionType="supportedBy" />
+</Layout>

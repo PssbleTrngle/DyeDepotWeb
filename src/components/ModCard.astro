@@ -5,11 +5,20 @@ import ModIcon from "./ModIcon.astro";
 import Pill from "./Pill.astro";
 import { Icon } from "astro-icon/components";
 
-export type Props = WithMatches<ModCompat>;
+export type ConnectionType = "supports" | "supportedBy";
 
-const { mod, supports, matches = [] } = Astro.props;
+export type Props = WithMatches<ModCompat> & {
+  connectionType: ConnectionType;
+};
 
-const highlightedMods = matches.filter(it => it.key?.startsWith("supports.")).map(it => it.refIndex ?? -1)
+const { mod, connections, matches = [], connectionType } = Astro.props;
+
+const highlightedMods = matches
+  .filter((it) => it.key?.startsWith("connections."))
+  .map((it) => it.refIndex ?? -1);
+
+const connectionText =
+  connectionType === "supports" ? "adds support for:" : "support added by:";
 ---
 
 <li class="card">
@@ -32,12 +41,12 @@ const highlightedMods = matches.filter(it => it.key?.startsWith("supports.")).ma
     {mod.loaders.map(it => <Pill text={it} />)}
   </section>
 
-  <section class="supports">
+  <section class="connections">
     {
-      supports.length > 0 ? (
-          <h4>adds support for:</h4>
+      connections.length > 0 ? (
+          <h4>{connectionText}</h4>
           <ul>
-            {supports.map((it, i) => (
+            {connections.map((it, i) => (
               <li title={it.name}>
                 <a href={it.url}>
                   <ModIcon url={it.iconUrl} highlighted={highlightedMods.includes(i)} />
@@ -92,11 +101,11 @@ const highlightedMods = matches.filter(it => it.key?.startsWith("supports.")).ma
     grid-template:
       "name icon"
       "pills icon"
-      "supports supports"
+      "connections connections"
       / 1fr 100px;
 
-    .supports {
-      grid-area: supports;
+    .connections {
+      grid-area: connections;
 
       h4 {
         font-style: italic;

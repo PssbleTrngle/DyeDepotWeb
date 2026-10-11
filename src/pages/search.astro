@@ -1,14 +1,26 @@
 ---
 import ModList from "../components/ModList.astro";
+import { compatMods, mods } from "../generated";
+import type { ModCompat } from "../mods";
 import { searchMods } from "../search";
 
 export const partial = true;
 
-const { term } = await Astro.request.json();
-const matches = searchMods(term);
+const { term, type } = await Astro.request.json();
 
-console.log(term);
-Astro.response.headers.set("HX-Push-Url", term ? `/?search=${term}` : "/");
+const subjects: Record<string, ModCompat[] | undefined> = {
+  "compat-mods": compatMods,
+  compatible: mods,
+};
+
+const matches = searchMods(subjects[type] ?? [], term);
+
+Astro.response.headers.set(
+  "HX-Push-Url",
+  term ? `/${type}?search=${term}` : "/",
+);
+
+const connectionType = type === "compat-mods" ? "supports" : "supportedBy";
 ---
 
-<ModList mods={matches} />
+<ModList mods={matches} connectionType={connectionType} />

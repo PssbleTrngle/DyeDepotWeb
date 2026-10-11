@@ -38,6 +38,7 @@ function toMod(project: Labrinth.Projects.v3.Project): Mod {
       modrinth: url,
     },
     downloads: project.downloads,
+    categories: project.categories,
   };
 }
 
