@@ -10,7 +10,7 @@ export default defineConfig({
   integrations: [
     icon({
       include: {
-        "simple-icons": ["git", "modrinth", "curseforge"],
+        "simple-icons": ["git", "modrinth", "curseforge", "discord"],
       },
     }),
     htmx,

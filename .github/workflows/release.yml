@@ -12,7 +12,6 @@ concurrency:
 env:
    REGISTRY: ghcr.io
    GITHUB_REPO: ${{ github.repository }}
-   RELEASE_VERSION: 1.0.${{ github.run_number }}
 
 jobs:
    docker:
@@ -49,4 +48,6 @@ jobs:
               tags: ${{ steps.meta.outputs.tags }}
               labels: ${{ steps.meta.outputs.labels }}
               build-args: |
-                 version=${{ env.RELEASE_VERSION }}
+                 repository=https://github.com/${{ env.GITHUB_REPO }}
+                 commit: ${{ github.sha }}
+                 discordInviteUrl: ${{ secrets.DISCORD_INVITE_URL }}

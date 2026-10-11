@@ -1,4 +1,5 @@
 ---
+import Footer from "./components/Footer.astro";
 import Nav from "./components/Nav.astro";
 
 export type Props = { title?: string; class?: string };
@@ -19,6 +20,7 @@ const { title = "Dye Depot", ...props } = Astro.props;
     <main {...props}>
       <slot />
     </main>
+    <Footer />
   </body>
 
   <style is:global>
@@ -42,12 +44,16 @@ const { title = "Dye Depot", ...props } = Astro.props;
       ::selection {
         background: var(--accent);
       }
+
+      min-height: 100lvh;
+      display: flex;
+      flex-direction: column;
     }
 
     main {
       padding: 1em;
-      display: grid;
-      justify-content: center;
+      flex: 1;
+      margin: 0 auto;
     }
 
     input {
@@ -73,6 +79,18 @@ const { title = "Dye Depot", ...props } = Astro.props;
     h1 {
       text-align: center;
       margin-bottom: 1em;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+
+      transition: all 0.2s ease;
+
+      &:hover {
+        filter: brightness(1.1);
+        text-decoration: underline;
+      }
     }
   </style>
 </html>

@@ -1,4 +1,5 @@
 ---
+import { appInfo } from "../generated";
 import Layout from "../layout.astro";
 ---
 
@@ -26,13 +27,19 @@ import Layout from "../layout.astro";
       <button> Request compatibility with a mod </button>
     </a>
   </section>
+  <p>
+    The data for this site comes from it's
+    <a href={`${appInfo.repository}/tree/main/data`}> GitHub repository </a>.
+    You can submit any missing mods using a PR or by reaching out on <a
+      href={appInfo.discordLink}>Discord</a
+    >.
+  </p>
 </Layout>
 
 <style scoped>
   .content {
     font-size: 1.5em;
     max-width: 850px;
-    margin: 0 auto;
   }
 
   .logo {
@@ -46,7 +53,7 @@ import Layout from "../layout.astro";
     gap: 1em;
     justify-content: center;
 
-    margin-top: 2em;
+    margin-block: 2em;
 
     @media (width > 800px) {
       grid-auto-flow: column;

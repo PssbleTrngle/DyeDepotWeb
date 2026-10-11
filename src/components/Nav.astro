@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-import { dyeDepot } from "../generated";
+import { appInfo, dyeDepot } from "../generated";
 
 const links = [
   {
@@ -33,6 +33,14 @@ const externalLinks = [
     icon: "simple-icons:curseforge",
   },
 ];
+
+if (appInfo.discordLink) {
+  externalLinks.push({
+    url: appInfo.discordLink,
+    title: "discord server",
+    icon: "simple-icons:discord",
+  });
+}
 ---
 
 <nav>

@@ -153,6 +153,7 @@ export default async function populateData() {
     join(import.meta.dirname, "generated.ts"),
     [
       `import type { Mod, ModCompat } from "./mods";`,
+      `import type { AppInfo } from "./components/Footer.astro";`,
       `export const compatMods: ModCompat[] = ${JSON.stringify(
         compatMods.toSorted((a, b) => {
           const [scoreA, scoreB] = [a, b].map(
@@ -169,6 +170,12 @@ export default async function populateData() {
       )};`,
       `export const dyeDepot: Mod = ${JSON.stringify(dyeDepot)};`,
       `export const incompatibleMods: ModCompat[] = ${JSON.stringify(incompatiblities)};`,
+      `export const appInfo: AppInfo = {
+        builtAt: new Date(${Date.now()}),
+        repository: "${import.meta.env.GIT_REPOSITORY ?? ""}",
+        commit: "${import.meta.env.GIT_COMMIT ?? ""}",
+        discordLink: "${import.meta.env.DISCORD_INVITE_URL ?? ""}",
+      };`,
     ].join("\n"),
   );
 }

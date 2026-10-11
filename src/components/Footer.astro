@@ -1,0 +1,58 @@
+---
+import { appInfo } from "../generated";
+import { formatAgo } from "../time";
+
+export type AppInfo = {
+  builtAt: Date;
+  repository?: string;
+  discordLink?: string;
+  commit?: string;
+};
+
+const repoLink =
+  appInfo.repository &&
+  `${appInfo.repository}/tree/${appInfo.commit ?? "main"}`;
+
+const repoName =
+  appInfo.repository &&
+  appInfo.repository.substring(appInfo.repository.lastIndexOf("/") + 1);
+
+const buildAgo = formatAgo(appInfo.builtAt);
+---
+
+<footer>
+  <section class="time" title={appInfo.builtAt.toLocaleString()}>
+    built {buildAgo}
+  </section>
+  <section class="version">
+    {
+      repoLink && (
+        <span>
+          {repoName}@<a href={repoLink}>{appInfo.commit}</a>
+        </span>
+      )
+    }
+  </section>
+  <section></section>
+</footer>
+
+<style scoped>
+  footer {
+    background: var(--bg-2);
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+    padding: 1em;
+
+    border-top: var(--bg-3) 2px solid;
+
+    .time {
+      cursor: help;
+    }
+
+    .version {
+      text-align: center;
+    }
+  }
+</style>
