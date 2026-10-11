@@ -66,5 +66,16 @@
   {
     "url": "https://modrinth.com/mod/oreganized",
     "features": "crystal glass"
+  },
+  {
+    "url": "https://modrinth.com/mod/the-sham"
+  },
+  {
+    "url": "https://modrinth.com/mod/doom-gloom",
+    "features": "vigil candles"
+  },
+  {
+    "url": "https://modrinth.com/mod/extra-shiny",
+    "features": "carpets on vanadium golems"
   }
 ]
