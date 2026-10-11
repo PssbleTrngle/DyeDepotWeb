@@ -49,5 +49,5 @@ jobs:
               labels: ${{ steps.meta.outputs.labels }}
               build-args: |
                  repository=https://github.com/${{ env.GITHUB_REPO }}
-                 commit: ${{ github.sha }}
-                 discordInviteUrl: ${{ secrets.DISCORD_INVITE_URL }}
+                 commit=${{ github.sha }}
+                 discordInviteUrl=${{ secrets.DISCORD_INVITE_URL }}
