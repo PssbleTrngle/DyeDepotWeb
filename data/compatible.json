@@ -63,22 +63,73 @@
       "url": "https://modrinth.com/mod/industrially-plated"
     },
     {
-      "url": "https://modrinth.com/mod/sign-plates-letters-symbols"
+      "url": "https://modrinth.com/mod/sign-plates-letters-symbols",
+      "features": "Sign Plates"
     },
     {
       "url": "https://modrinth.com/mod/oreganized",
-      "features": "crystal glass"
+      "features": "Crystal Glass"
     },
     {
       "url": "https://modrinth.com/mod/the-sham"
     },
     {
       "url": "https://modrinth.com/mod/doom-gloom",
-      "features": "vigil candles"
+      "features": "Vigil Candles"
     },
     {
       "url": "https://modrinth.com/mod/extra-shiny",
-      "features": "carpets on vanadium golems"
+      "features": "Carpets on Vanadium Golems"
+    },
+    {
+      "url": "https://modrinth.com/mod/create-aeronautics-dyeable-ropes",
+      "features": "Dyeable Ropes"
+    },
+    {
+      "url": "https://modrinth.com/mod/fairylights"
+    },
+    {
+      "url": "https://modrinth.com/mod/modular-backpacks"
+    },
+    {
+      "url": "https://modrinth.com/mod/overpacked"
+    },
+    {
+      "url": "https://modrinth.com/mod/create-colored-packages"
+    },
+    {
+      "url": "https://modrinth.com/mod/tiled"
+    },
+    {
+      "url": "https://modrinth.com/mod/refined-mosaic-blocks",
+      "features": "Mosaic Blocks"
+    },
+    {
+      "url": "https://modrinth.com/mod/fabulous-furniture-java"
+    },
+    {
+      "url": "https://modrinth.com/mod/create-colored-connections"
+    },
+    {
+      "url": "https://modrinth.com/mod/waxed"
+    },
+    {
+      "url": "https://modrinth.com/mod/dashpanels"
+    },
+    {
+      "url": "https://modrinth.com/mod/truly-custom-horse-tack"
+    },
+    {
+      "url": "https://modrinth.com/mod/bedrock-edition-cauldrons"
+    },
+    {
+      "url": "https://modrinth.com/mod/create-colored-connections"
+    },
+    {
+      "url": "https://www.curseforge.com/minecraft/mc-mods/poly-juicy-ores"
+    },
+    {
+      "url": "https://www.curseforge.com/minecraft/mc-mods/i-need-skating"
     }
   ]
 }
