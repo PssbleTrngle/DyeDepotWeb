@@ -69,6 +69,10 @@ async function downloadAssets(mod: Mod): Promise<Partial<Mod>> {
   };
 }
 
+function wrapQuote(text: string) {
+  return `„${text}“`;
+}
+
 export default async function populateData() {
   await writeSchemas();
   const { compatible, incompatible } = loadData();
@@ -85,6 +89,7 @@ export default async function populateData() {
       return {
         mod,
         connections,
+        description: features ?? wrapQuote(mod.summary),
       } satisfies ModCompat;
     }),
   );
@@ -98,7 +103,11 @@ export default async function populateData() {
   const contentMods = populated.flatMap<ModCompat>(
     ({ mod, connections, ...rest }) => {
       if (connections.length > 0)
-        return connections.map((it) => ({ mod: it, connections: [mod] }));
+        return connections.map((it) => ({
+          mod: it,
+          connections: [mod],
+          description: wrapQuote(it.summary),
+        }));
       return [{ mod, connections: [], ...rest }];
     },
   );

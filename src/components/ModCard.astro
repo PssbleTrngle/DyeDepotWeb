@@ -97,7 +97,7 @@ const connectionText = subtext();
 
     .description {
       font-size: 1em;
-      margin: 1em 0;
+      margin-block: 1.5em;
     }
 
     h3 {
@@ -141,12 +141,15 @@ const connectionText = subtext();
 
       i {
         display: block;
-        margin: 0.5em 0;
+        margin-block: 1em;
+
+        padding-top: 1em;
+        border-top: 3px solid var(--bg-1);
       }
 
       & ul {
         list-style: none;
-        padding: 0.5em;
+        padding: 0;
 
         display: grid;
         grid-template-columns: repeat(auto-fit, 50px);
