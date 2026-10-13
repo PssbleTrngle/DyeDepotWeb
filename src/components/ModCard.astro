@@ -38,12 +38,27 @@ const connectionText = subtext();
 
   <h3>
     <span>{mod.name}</span>
-    <a href={mod.links.source} title="source code">
-      <Icon name="simple-icons:git" />
-    </a>
-    <a href={mod.links.modrinth} title="modrinth project">
-      <Icon name="simple-icons:modrinth" />
-    </a>
+    {
+      mod.links.source && (
+        <a href={mod.links.source} title="source code">
+          <Icon name="simple-icons:git" />
+        </a>
+      )
+    }
+    {
+      mod.links.modrinth && (
+        <a href={mod.links.modrinth} title="modrinth project">
+          <Icon name="simple-icons:modrinth" />
+        </a>
+      )
+    }
+    {
+      mod.links.curseforge && (
+        <a href={mod.links.curseforge} title="curseforge project">
+          <Icon name="simple-icons:curseforge" />
+        </a>
+      )
+    }
   </h3>
 
   <section class="pills">
