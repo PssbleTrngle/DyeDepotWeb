@@ -9,16 +9,17 @@ export type ProjectProvider = {
 
 export function providerOf(url: string) {
   const { host, protocol } = new URL(url);
+  const withoutWWW = host.startsWith("www.") ? host.substring(4) : host;
 
   if (protocol !== "https:") {
     throw new Error("only http is supported");
   }
 
-  if (host === "modrinth.com") {
+  if (withoutWWW === "modrinth.com") {
     return modrinth;
   }
 
-  if (host === "curseforge.com") {
+  if (withoutWWW === "curseforge.com") {
     return curseforge;
   }
 
