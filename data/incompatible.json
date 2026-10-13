@@ -4,6 +4,11 @@
     {
       "url": "https://modrinth.com/mod/el-and-ls-dye-mod",
       "reason": "adds it's own dye colors, some clashing with dye depot's"
+    },
+    {
+      "url": "https://modrinth.com/mod/naturalist",
+      "reason": "snails crash when dyed with depot colors",
+      "ticket": "https://github.com/PssbleTrngle/DyeTheWorld/issues/227"
     }
   ]
 }

@@ -15,6 +15,10 @@
           },
           "reason": {
             "type": "string"
+          },
+          "ticket": {
+            "type": "string",
+            "format": "uri"
           }
         },
         "required": [

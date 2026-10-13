@@ -24,6 +24,7 @@ export const incompatibleSchema = z.object({
     modSchema.and(
       z.object({
         reason: z.string(),
+        ticket: z.url().optional(),
       }),
     ),
   ),
