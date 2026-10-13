@@ -9,6 +9,7 @@ export type Mod = {
   links: {
     source?: string;
     modrinth?: string;
+    curseforge?: string;
   };
   downloads: number;
   categories: string[];

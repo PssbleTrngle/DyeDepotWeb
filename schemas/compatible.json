@@ -31,24 +31,18 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "url"
-                  ],
+                  "required": ["url"],
                   "additionalProperties": false
                 }
               }
             ]
           }
         },
-        "required": [
-          "url"
-        ],
+        "required": ["url"],
         "additionalProperties": false
       }
     }
   },
-  "required": [
-    "mods"
-  ],
+  "required": ["mods"],
   "additionalProperties": false
 }

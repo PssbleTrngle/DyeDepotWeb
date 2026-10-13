@@ -39,6 +39,16 @@ jobs:
          - name: Setup Bun
            uses: oven-sh/setup-bun@v2
 
+         - name: Populate data
+           run: bun run populate
+           env:
+              MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+              CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
+              DISCORD_INVITE_URL: ${{ secrets.DISCORD_INVITE_URL }}
+              GIT_REPOSITORY: https://github.com/${{ env.GITHUB_REPO }}
+              GIT_COMMIT: ${{ github.sha }}
+              GIT_BRANCH: ${{ github.ref_name }}
+
          - name: Build and push Docker image
            uses: docker/build-push-action@v7
            with:
@@ -47,8 +57,3 @@ jobs:
               push: true
               tags: ${{ steps.meta.outputs.tags }}
               labels: ${{ steps.meta.outputs.labels }}
-              build-args: |
-                 repository=https://github.com/${{ env.GITHUB_REPO }}
-                 branch=${{ github.ref_name }}
-                 commit=${{ github.sha }}
-                 discordInviteUrl=${{ secrets.DISCORD_INVITE_URL }}

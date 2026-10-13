@@ -4,15 +4,6 @@ WORKDIR /app
 FROM base AS builder
 COPY . .
 
-ARG repository
-ENV GIT_REPOSITORY=$repository
-ARG commit
-ENV GIT_COMMIT=$commit
-ARG branch
-ENV GIT_BRANCH=$branch
-arg discordInviteUrl
-ENV DISCORD_INVITE_URL=$discordInviteUrl
-
 RUN bun install --frozen-lockfile --production
 RUN bun run build
 

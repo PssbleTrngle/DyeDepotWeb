@@ -1,4 +1,5 @@
-import type { Mod, SupportedMod } from "../mods";
+import type { Mod, SupportedMod } from "../../src/mods";
+import curseforge from "./curseforge";
 import modrinth from "./modrinth";
 
 export type ProjectProvider = {
@@ -15,6 +16,10 @@ export function providerOf(url: string) {
 
   if (host === "modrinth.com") {
     return modrinth;
+  }
+
+  if (host === "curseforge.com") {
+    return curseforge;
   }
 
   throw new Error(`cannot resolve mods at hostname '${host}'`);

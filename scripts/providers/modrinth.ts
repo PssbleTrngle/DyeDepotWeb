@@ -5,11 +5,11 @@ import {
   type Labrinth,
 } from "@modrinth/api-client";
 import type { ProjectProvider } from ".";
-import packageJson from "../../package.json";
-import type { Mod, SupportedMod } from "../mods";
+import type { Mod, SupportedMod } from "../../src/mods";
+import { userAgent } from "./common";
 
 const client = new GenericModrinthClient({
-  userAgent: `${packageJson.name}/${packageJson.version}`,
+  userAgent,
   features: [
     new AuthFeature({ token: import.meta.env.MODRINTH_TOKEN } as AuthConfig),
   ],

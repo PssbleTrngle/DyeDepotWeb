@@ -1,5 +1,7 @@
 ---
-const colors: Record<string, string | undefined> = {
+import type { Loader } from "../loaders";
+
+const colors: Record<Loader, string | undefined> = {
   neoforge: "#f99e6b",
   forge: "#959eef",
   fabric: "#dbb69b",
@@ -10,7 +12,7 @@ export type Props = { text: string };
 const { text } = Astro.props;
 ---
 
-<span style={{ color: colors[text] }}>
+<span style={{ color: colors[text as Loader] }}>
   {text}
 </span>
 

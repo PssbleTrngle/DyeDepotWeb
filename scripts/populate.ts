@@ -129,7 +129,7 @@ export default async function populateData() {
   );
 
   await writeFile(
-    join(import.meta.dirname, "generated.ts"),
+    join(import.meta.dirname, "..", "src", "generated.ts"),
     [
       `import type { Mod, ModCompat } from "./mods";`,
       `import type { AppInfo } from "./components/Footer.astro";`,
