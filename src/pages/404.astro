@@ -1,0 +1,91 @@
+---
+import Layout from "../layout.astro";
+
+const colors = [
+  "amber",
+  "aqua",
+  "beige",
+  "coral",
+  "forest",
+  "ginger",
+  "indigo",
+  "maroon",
+  "mint",
+  "navy",
+  "olive",
+  "rose",
+  "slate",
+  "tan",
+  "teal",
+  "verdant",
+];
+
+const items = [
+  "dye_depot:$_dye",
+  "dye_depot:$_concrete_powder",
+  "dye_depot:$_concrete",
+  "dye_depot:$_dye_basket",
+  "dye_depot:$_candle",
+  "dye_depot:$_wool",
+  "dye_depot:$_terracotta",
+  "dye_depot:$_glazed_terracotta",
+  "dye_depot:$_stained_glass",
+  "create:$_seat",
+  "create:$_toolbox",
+  "doom_and_gloom:$_vigil_candle",
+  "oreganized:$_crystal_glass",
+  "supplementaries:candle_holder_$",
+  "suppsquared:gold_candle_holder_$",
+  "suppsquared:sack_$",
+  "dye_the_world:$_terracotta_bricks",
+  "dye_the_world:$_terracotta_brick_stairs",
+  "dye_the_world:$_canvas_sign",
+  "dye_the_world:$_hanging_canvas_sign",
+];
+
+function randomIcon() {
+  const pattern = items[Math.floor(Math.random() * items.length)];
+  const color = colors[Math.floor(Math.random() * colors.length)];
+  const id = pattern.replace("$", color);
+  const path = id.replace(":", "/");
+  return {
+    src: `https://icons.macarena.ceo/icons/${path}.png`,
+    title: id,
+  };
+}
+
+const { pathname } = Astro.url;
+---
+
+<Layout class="centered">
+  <section>
+    <img {...randomIcon()} />
+    <h1><b>404:</b> Not found</h1>
+    <pre class="path">Path: {pathname}</pre>
+  </section>
+</Layout>
+
+<style scoped>
+  .centered {
+    text-align: center;
+
+    img {
+      max-width: 80dvw;
+    }
+
+    b {
+      color: var(--accent);
+    }
+
+    .path {
+      border: solid 1px var(--bg-2);
+      width: fit-content;
+      margin: 0 auto;
+      padding: 0.5em 1em;
+      border-radius: 0.5em;
+    }
+
+    display: grid;
+    align-items: center;
+  }
+</style>
