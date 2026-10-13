@@ -1,0 +1,12 @@
+---
+import ModCard from "@/components/ModCard.astro";
+import type { ModCompat } from "@/mods";
+
+export type Props = ModCompat;
+
+const { ...props } = Astro.props;
+---
+
+<ModCard {...props}>
+  <i slot="details">adds support for:</i>
+</ModCard>

@@ -1,3 +1,4 @@
+import type { Mod, SupportedMod } from "@/mods";
 import {
   AuthFeature,
   GenericModrinthClient,
@@ -5,7 +6,6 @@ import {
   type Labrinth,
 } from "@modrinth/api-client";
 import type { ProjectProvider } from ".";
-import type { Mod, SupportedMod } from "../../src/mods";
 import { userAgent } from "./common";
 
 const client = new GenericModrinthClient({

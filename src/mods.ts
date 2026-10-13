@@ -24,3 +24,7 @@ export type ModCompat = {
   description?: string;
   connections: SupportedMod[];
 };
+
+export type IncompatibleMod = ModCompat & {
+  ticket?: string;
+};

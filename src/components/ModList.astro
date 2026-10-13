@@ -1,20 +1,21 @@
 ---
-import ModCard from "../components/ModCard.astro";
-import type { ModCompat } from "../mods";
-import type { Page } from "../pagination";
-import type { WithMatches } from "../search";
-import PaginationControls from "./PaginationControls.astro";
+import PaginationControls from "@/components/PaginationControls.astro";
+import type { ModCompat } from "@/mods";
+import type { Page } from "@/pagination";
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 
-export type Props = Page<WithMatches<ModCompat>>;
+export type Props = Page<ModCompat> & {
+  component: AstroComponentFactory;
+};
 
-const { values, pagination } = Astro.props;
+const { pagination, values, component: Component } = Astro.props;
 ---
 
 <section id="mods">
   <PaginationControls {...pagination} id="top-pagination" />
 
   <ul>
-    {values.map((it) => <ModCard {...it} />)}
+    {values.map((it) => <Component {...it} />)}
   </ul>
 
   <PaginationControls {...pagination} scroll id="bottom-pagination" />

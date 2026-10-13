@@ -1,6 +1,6 @@
 ---
-import type { Pagination } from "../pagination";
-import { searchForm } from "./Search.astro";
+import type { Pagination } from "@/pagination";
+import { searchForm } from "@/search";
 
 export type Props = Pagination & {
   scroll?: boolean;
@@ -10,13 +10,15 @@ export type Props = Pagination & {
 const { page, next, previous, scroll, ...props } = Astro.props;
 const visible = next || previous;
 
+const form = searchForm(Astro.url, scroll);
+
 if (!visible) return;
 ---
 
 <section class="pagination" {...props}>
   {
     previous !== undefined && (
-      <form class="previous" hx-include="#search" {...searchForm(scroll)}>
+      <form class="previous" hx-include="#search" {...form}>
         <button>◄</button>
         <input name="page" type="hidden" value={previous} />
       </form>
@@ -27,7 +29,7 @@ if (!visible) return;
 
   {
     next !== undefined && (
-      <form class="next" hx-include="#search" {...searchForm(scroll)}>
+      <form class="next" hx-include="#search" {...form}>
         <button>▶</button>
         <input name="page" type="hidden" value={next} />
       </form>

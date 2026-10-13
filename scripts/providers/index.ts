@@ -1,4 +1,4 @@
-import type { Mod, SupportedMod } from "../../src/mods";
+import type { Mod, SupportedMod } from "@/mods";
 import curseforge from "./curseforge";
 import modrinth from "./modrinth";
 

@@ -1,24 +1,19 @@
 ---
-import { dyeDepot } from "../generated";
-import type { SearchQuery } from "../search";
-import Select from "./Select.astro";
+import Select from "@/components/Select.astro";
+import { dyeDepot } from "@/generated";
+import { searchForm, type SearchQuery } from "@/search";
 
 export type Props = { initial?: SearchQuery };
 
 const { initial } = Astro.props;
-
-const type = Astro.url.pathname.substring(1);
-
-export const searchForm = (scroll = false) => ({
-  "hx-post": "search",
-  "hx-target": "#mods",
-  "hx-swap": `outerHTML ${scroll ? "show:window:top" : ""}`,
-});
 ---
 
-<form id="search" {...searchForm()} hx-trigger="submit, input delay:800ms">
+<form
+  id="search"
+  {...searchForm(Astro.url)}
+  hx-trigger="submit, input delay:800ms"
+>
   <input name="term" placeholder="Search for a mod..." value={initial?.term} />
-  <input name="type" type="hidden" value={type} />
 
   <Select
     name="loader"

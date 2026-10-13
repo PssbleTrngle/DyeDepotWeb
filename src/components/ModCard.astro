@@ -1,9 +1,9 @@
 ---
+import ModIcon from "@/components/ModIcon.astro";
+import Pill from "@/components/Pill.astro";
+import type { ModCompat } from "@/mods";
+import type { WithMatches } from "@/search";
 import { Icon } from "astro-icon/components";
-import type { ModCompat } from "../mods";
-import type { WithMatches } from "../search";
-import ModIcon from "./ModIcon.astro";
-import Pill from "./Pill.astro";
 
 export type Props = WithMatches<ModCompat>;
 
@@ -12,23 +12,6 @@ const { mod, connections, description, matches = [] } = Astro.props;
 const highlightedMods = matches
   .filter((it) => it.key?.startsWith("connections."))
   .map((it) => it.refIndex ?? -1);
-
-const type = Astro.locals.listType ?? Astro.url.pathname.substring(1);
-
-function subtext() {
-  if (type === "incompatible") {
-    return null;
-  }
-
-  if (connections.length > 0) {
-    if (type === "compat-mods") return "adds support for:";
-    return "support added by:";
-  }
-
-  return "built-in support";
-}
-
-const connectionText = subtext();
 ---
 
 <li class="card" id={`mod-${mod.slug}`}>
@@ -66,12 +49,12 @@ const connectionText = subtext();
     {mod.loaders.map((it) => <Pill text={it} />)}
   </section>
 
-  <section class="connections">
+  <section class="details">
     {description && <p class="description">{description}</p>}
-    {connectionText && <i>{connectionText}</i>}
+    <slot name="details" />
     {
       connections.length > 0 && (
-        <ul>
+        <ul class="connections">
           {connections.map((it, i) => (
             <li title={it.name}>
               <a href={it.url}>
@@ -133,11 +116,11 @@ const connectionText = subtext();
     grid-template:
       "name icon"
       "pills icon"
-      "connections connections"
+      "details details"
       / 1fr 100px;
 
-    .connections {
-      grid-area: connections;
+    .details {
+      grid-area: details;
 
       i {
         display: block;
@@ -147,7 +130,7 @@ const connectionText = subtext();
         border-top: 3px solid var(--bg-1);
       }
 
-      & ul {
+      .connections {
         list-style: none;
         padding: 0;
 

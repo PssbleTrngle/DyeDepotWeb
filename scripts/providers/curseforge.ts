@@ -1,7 +1,7 @@
+import { LOADERS, type Loader } from "@/loaders";
+import type { Mod, SupportedMod } from "@/mods";
 import CurseForgeClient from "curseforge-js";
 import type { ProjectProvider } from ".";
-import { LOADERS, type Loader } from "../../src/loaders";
-import type { Mod, SupportedMod } from "../../src/mods";
 import { userAgent } from "./common";
 
 const client = new CurseForgeClient({

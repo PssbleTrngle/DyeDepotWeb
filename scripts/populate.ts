@@ -1,8 +1,8 @@
+import type { IncompatibleMod, Mod, ModCompat, SupportedMod } from "@/mods";
 import { existsSync } from "node:fs";
 import { writeFile } from "node:fs/promises";
 import { extname } from "node:path";
 import { join } from "node:path/posix";
-import type { Mod, ModCompat, SupportedMod } from "../src/mods";
 import { loadData } from "./data";
 import { providerOf } from "./providers";
 import { writeSchemas } from "./schemas";
@@ -131,14 +131,16 @@ export default async function populateData() {
       return {
         mod,
         description: it.reason,
+        ticket: it.ticket,
         connections: [],
-      } satisfies ModCompat;
+      } satisfies IncompatibleMod;
     }),
   );
 
   await writeFile(
     join(import.meta.dirname, "..", "src", "generated.ts"),
     [
+      "/* eslint-disable */",
       `import type { Mod, ModCompat } from "./mods";`,
       `import type { AppInfo } from "./components/Footer.astro";`,
       `export const compatMods: ModCompat[] = ${JSON.stringify(
@@ -156,7 +158,7 @@ export default async function populateData() {
         }),
       )};`,
       `export const dyeDepot: Mod = ${JSON.stringify(dyeDepot)};`,
-      `export const incompatibleMods: ModCompat[] = ${JSON.stringify(incompatiblities)};`,
+      `export const incompatibleMods: IncompatibleMod[] = ${JSON.stringify(incompatiblities)};`,
       `export const appInfo: AppInfo = {
         builtAt: new Date(${Date.now()}),
         repository: "${import.meta.env.GIT_REPOSITORY ?? ""}",
