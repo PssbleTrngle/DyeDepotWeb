@@ -8,6 +8,9 @@ export type Props = Pagination & {
 };
 
 const { page, next, previous, scroll, ...props } = Astro.props;
+const visible = next || previous;
+
+if (!visible) return;
 ---
 
 <section class="pagination" {...props}>
