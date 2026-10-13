@@ -1,0 +1,84 @@
+---
+import type { Pagination } from "../pagination";
+import { searchForm } from "./Search.astro";
+
+export type Props = Pagination & {
+  scroll?: boolean;
+  id?: string;
+};
+
+const { page, next, previous, scroll, ...props } = Astro.props;
+---
+
+<section class="pagination" {...props}>
+  {
+    previous !== undefined && (
+      <form class="previous" hx-include="#search" {...searchForm(scroll)}>
+        <button>◄</button>
+        <input name="page" type="hidden" value={previous} />
+      </form>
+    )
+  }
+
+  <button class="current">{page}</button>
+
+  {
+    next !== undefined && (
+      <form class="next" hx-include="#search" {...searchForm(scroll)}>
+        <button>▶</button>
+        <input name="page" type="hidden" value={next} />
+      </form>
+    )
+  }
+</section>
+
+<style scoped>
+  .pagination {
+    padding-block: 1em;
+
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(3, 3em);
+    gap: 1em;
+
+    user-select: none;
+
+    .previous {
+      grid-column: 1;
+    }
+
+    .current {
+      grid-column: 2;
+      display: block;
+
+      background: var(--bg-3);
+    }
+
+    .next {
+      grid-column: 3;
+    }
+
+    button {
+      background: var(--bg-2);
+      align-self: center;
+      border-radius: 9999px;
+      font-size: 1em;
+      color: var(--text);
+
+      width: 100%;
+      aspect-ratio: 1/1;
+
+      display: grid;
+      align-items: center;
+      justify-content: center;
+
+      cursor: pointer;
+
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: var(--bg-3);
+      }
+    }
+  }
+</style>

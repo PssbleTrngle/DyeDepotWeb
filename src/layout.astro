@@ -15,7 +15,7 @@ const { title = "Dye Depot", ...props } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body>
+  <body hx-ext="json-enc">
     <Nav />
     <main {...props}>
       <slot />

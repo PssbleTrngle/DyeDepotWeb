@@ -2,6 +2,7 @@
 import ModList from "../components/ModList.astro";
 import { compatMods, compatibleMods, incompatibleMods } from "../generated";
 import type { ModCompat } from "../mods";
+import { int } from "../number";
 import { searchMods, type SearchQuery } from "../search";
 
 export const partial = true;
@@ -20,6 +21,7 @@ const search: SearchQuery = {
   ...body,
   loader: multiSelectValue(body.loader),
   version: multiSelectValue(body.version),
+  page: int(body.page),
 };
 
 const subjects: Record<string, ModCompat[] | undefined> = {
@@ -28,12 +30,13 @@ const subjects: Record<string, ModCompat[] | undefined> = {
   incompatible: incompatibleMods,
 };
 
-const matches = searchMods(subjects[type] ?? [], search);
+const page = searchMods(subjects[type] ?? [], search);
 
 const params = new URLSearchParams();
 if (search.term) params.set("search", search.term);
 if (search.loader?.length) params.set("loader", search.loader.join(","));
 if (search.version?.length) params.set("version", search.version.join(","));
+if (search.page && search.page > 1) params.set("page", search.page.toString());
 
 let query = params.toString();
 if (query) query = `?${query}`;
@@ -42,4 +45,4 @@ Astro.response.headers.set("HX-Push-Url", `/${type}${query}`);
 Astro.locals.listType = type;
 ---
 
-<ModList mods={matches} />
+<ModList {...page} />

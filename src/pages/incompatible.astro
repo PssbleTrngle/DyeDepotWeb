@@ -6,11 +6,11 @@ import Layout from "../layout.astro";
 import { parseSearchQuery, searchMods } from "../search";
 
 const search = parseSearchQuery(Astro.url);
-const matches = searchMods(incompatibleMods, search);
+const page = searchMods(incompatibleMods, search);
 ---
 
 <Layout title="Incompatible">
   <h1>Known incompatibilities</h1>
   <Search initial={search} />
-  <ModList mods={matches} />
+  <ModList {...page} />
 </Layout>

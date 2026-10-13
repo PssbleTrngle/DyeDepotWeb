@@ -8,15 +8,15 @@ export type Props = { initial?: SearchQuery };
 const { initial } = Astro.props;
 
 const type = Astro.url.pathname.substring(1);
+
+export const searchForm = (scroll = false) => ({
+  "hx-post": "search",
+  "hx-target": "#mods",
+  "hx-swap": `outerHTML ${scroll ? "show:window:top" : ""}`,
+});
 ---
 
-<form
-  hx-ext="json-enc"
-  hx-post="search"
-  hx-target="#mods"
-  hx-swap="outerHTML"
-  hx-trigger="submit, input delay:800ms"
->
+<form id="search" {...searchForm()} hx-trigger="submit, input delay:800ms">
   <input name="term" placeholder="Search for a mod..." value={initial?.term} />
   <input name="type" type="hidden" value={type} />
 
@@ -43,7 +43,7 @@ const type = Astro.url.pathname.substring(1);
   form {
     padding: 0 1em;
     justify-content: center;
-    margin-bottom: 50px;
+    margin-bottom: 2em;
 
     input {
       font-size: 1em;
