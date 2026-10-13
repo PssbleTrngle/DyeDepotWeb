@@ -1,10 +1,12 @@
 ---
+import { Image } from "astro:assets";
+import logo from "../assets/logo.webp";
 import { appInfo } from "../generated";
 import Layout from "../layout.astro";
 ---
 
 <Layout class="content">
-  <img class="logo" src="/logo.webp" alt="Dye Depot" />
+  <Image class="logo" src={logo} alt="Dye Depot" />
 
   <p>Dye Depot minecraft mod adding 16 additional colors to the game.</p>
   <p>
