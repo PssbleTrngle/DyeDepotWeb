@@ -29,14 +29,16 @@ export const incompatibleSchema = z.object({
   ),
 });
 
-await Promise.all([
-  writeSchema("compatible", compatibleSchema),
-  writeSchema("incompatible", incompatibleSchema),
-]);
-
 async function writeSchema(name: string, schema: z.ZodType) {
   await writeFile(
     join(import.meta.dirname, "..", "schemas", name + ".json"),
     JSON.stringify(schema.toJSONSchema(), null, 2),
   );
+}
+
+export async function writeSchemas() {
+  await Promise.all([
+    writeSchema("compatible", compatibleSchema),
+    writeSchema("incompatible", incompatibleSchema),
+  ]);
 }

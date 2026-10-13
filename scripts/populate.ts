@@ -2,14 +2,10 @@ import { existsSync } from "node:fs";
 import { writeFile } from "node:fs/promises";
 import { extname } from "node:path";
 import { join } from "node:path/posix";
-import compatibleData from "../data/compatible.json";
-import incompatibleData from "../data/incompatible.json";
 import type { Mod, ModCompat, SupportedMod } from "../src/mods";
+import { loadData } from "./data";
 import { providerOf } from "./providers";
-import { compatibleSchema, incompatibleSchema } from "./schemas";
-
-const compatible = compatibleSchema.parse(compatibleData);
-const incompatible = incompatibleSchema.parse(incompatibleData);
+import { writeSchemas } from "./schemas";
 
 async function fetchMod<T extends { url: string }>(mod: T): Promise<Mod> {
   const provider = providerOf(mod.url);
@@ -74,6 +70,9 @@ async function downloadAssets(mod: Mod): Promise<Partial<Mod>> {
 }
 
 export default async function populateData() {
+  await writeSchemas();
+  const { compatible, incompatible } = loadData();
+
   const populated = await Promise.all(
     compatible.mods.map(async ({ supports, features, ...compat }) => {
       const [mod, connections] = await Promise.all([
