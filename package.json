@@ -25,7 +25,7 @@
     "@astrojs/check": "^0.9.10",
     "@biomejs/biome": "^2.5.15",
     "@eslint/js": "^10.0.1",
-    "@modrinth/api-client": "^0.79.0",
+    "@modrinth/api-client": "^0.88.0",
     "@types/bun": "^1.4.2",
     "curseforge-js": "^1.1.5",
     "eslint": "^10.12.0",
