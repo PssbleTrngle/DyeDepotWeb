@@ -17,11 +17,16 @@
             "type": "string"
           }
         },
-        "required": ["url", "reason"],
+        "required": [
+          "url",
+          "reason"
+        ],
         "additionalProperties": false
       }
     }
   },
-  "required": ["mods"],
+  "required": [
+    "mods"
+  ],
   "additionalProperties": false
 }
