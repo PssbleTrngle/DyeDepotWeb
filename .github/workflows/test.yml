@@ -27,3 +27,6 @@ jobs:
 
          - name: Run tests
            run: bun run check
+           env:
+              MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+              CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
