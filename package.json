@@ -8,7 +8,7 @@
     "preview": "astro preview",
     "check": "bun test && astro check",
     "format": "biome format --write",
-    "prepare": "husky",
+    "prepare": "bun run scripts/stub.ts",
     "populate": "bun run scripts/populate.ts",
     "astro": "astro"
   },
