@@ -9,8 +9,7 @@
     "check": "bun test && astro check",
     "format": "biome format --write",
     "prepare": "bun run scripts/stub.ts",
-    "populate": "bun run scripts/populate.ts",
-    "astro": "astro"
+    "populate": "bun run scripts/populate.ts"
   },
   "dependencies": {
     "@astrojs/node": "^11.1.6",
