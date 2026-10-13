@@ -1,7 +1,7 @@
 // @ts-check
 import node from "@astrojs/node";
 import icon from "astro-icon";
-import { defineConfig } from "astro/config";
+import { defineConfig, passthroughImageService } from "astro/config";
 import htmx from "./plugins/htmx";
 
 export default defineConfig({
@@ -17,4 +17,7 @@ export default defineConfig({
   adapter: node({
     mode: "standalone",
   }),
+  image: {
+    service: passthroughImageService(),
+  },
 });
