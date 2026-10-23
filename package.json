@@ -22,7 +22,7 @@
     "htmx.org": "^2.0.11"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.10",
+    "@astrojs/check": "^0.9.11",
     "@biomejs/biome": "^2.5.15",
     "@eslint/js": "^10.0.1",
     "@modrinth/api-client": "^0.79.0",
