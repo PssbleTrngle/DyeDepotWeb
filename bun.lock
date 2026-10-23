@@ -17,7 +17,7 @@
         "@astrojs/check": "^0.9.10",
         "@biomejs/biome": "^2.5.15",
         "@eslint/js": "^10.0.1",
-        "@modrinth/api-client": "^0.79.0",
+        "@modrinth/api-client": "^0.94.0",
         "@types/bun": "^1.4.2",
         "curseforge-js": "^1.1.5",
         "eslint": "^10.12.0",
@@ -297,7 +297,7 @@
 
     "@keyv/serialize": ["@keyv/serialize@1.1.1", "", {}, "sha512-dXn3FZhPv0US+7dtJsIi2R+c7qWYiReoEh5zUntWCf4oSpMNib8FDhSoed6m3QyZdx5hK7iLFkYk3rNxwt8vTA=="],
 
-    "@modrinth/api-client": ["@modrinth/api-client@0.79.0", "", { "dependencies": { "mitt": "^3.0.1", "ofetch": "^1.4.1" }, "peerDependencies": { "@tauri-apps/plugin-http": "^2.0.0" }, "optionalPeers": ["@tauri-apps/plugin-http"] }, "sha512-3maV2whDGeaQOGZmWG47byH85CWotHAKZnuTERqatGctJwOfmPeDegUvcoo2Cx7DkC55BphjfcSbBod4h/9eDA=="],
+    "@modrinth/api-client": ["@modrinth/api-client@0.94.0", "", { "dependencies": { "mitt": "^3.0.1", "ofetch": "^1.4.1" }, "peerDependencies": { "@tauri-apps/plugin-http": "^2.0.0" }, "optionalPeers": ["@tauri-apps/plugin-http"] }, "sha512-hH2LX5IdiKEMkYn5I6kmYPaUXh+e1+2DYq+5cs+3TOkSXYOVbf4G7Yv46T87rNsm7hGwf+Ei5jGqchRJxq4F5A=="],
 
     "@napi-rs/wasm-runtime": ["@napi-rs/wasm-runtime@1.2.4", "", { "dependencies": { "@tybys/wasm-util": "^0.10.3" }, "peerDependencies": { "@emnapi/core": "^1.7.1 || ^2.0.0-alpha.4", "@emnapi/runtime": "^1.7.1 || ^2.0.0-alpha.4" } }, "sha512-AJxoUD2/15ESHbvpcyjU274nsAPLuOtPHCk0vKJM5pj//Fg/B1FXNWjPnXTT9PymCYYiHo4zPj0ZomXBKhoy7g=="],
 
